@@ -1,15 +1,18 @@
-lib-cov
-*.seed
-*.log
-*.csv
-*.dat
-*.out
-*.pid
-*.gz
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+.DS_Store
+.idea
 
-pids
-logs
-results
+# Folder config file
+Desktop.ini
 
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# node
 npm-debug.log
 node_modules
+build
+dist
+src/js/.cache
