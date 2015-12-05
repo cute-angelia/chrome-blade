@@ -32,11 +32,19 @@
           if (document.title.indexOf('xMissy') != -1) {
             self.fCleanAdxMissy();
           }
+          if (document.title.indexOf('| Skandal Artis') != -1) {
+            self.fCleanAdSkandal();
+          }
         },
         fCleanAdxMissy: function() {
           $('.noclick-small-banner, .sinclubbar, .noclick-large-banner').remove();
           $('#loadallbutton').click();
           $('#block-comments, #block-toolbar, #histats_counter, center').remove();
+        },fCleanAdSkandal: function() {
+          setInterval(function(){
+              $('#btm_banner').remove();
+              $("[title$='Online']").remove();
+          }, 1000);
         }
       }
     };
