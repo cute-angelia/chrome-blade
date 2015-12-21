@@ -29,22 +29,32 @@
       functions: {
         fInitInfo: function() {
           var self = this;
+          console.log(oData.localhost);
+
           if (document.title.indexOf('xMissy') != -1) {
             self.fCleanAdxMissy();
           }
           if (document.title.indexOf('| Skandal Artis') != -1) {
             self.fCleanAdSkandal();
           }
+          // https://rarbg.to
+          if ( oData.localhost == "rarbg.to" ) {
+            self.fCleanAdMafia();
+          }
         },
         fCleanAdxMissy: function() {
           $('.noclick-small-banner, .sinclubbar, .noclick-large-banner').remove();
           $('#loadallbutton').click();
           $('#block-comments, #block-toolbar, #histats_counter, center').remove();
-        },fCleanAdSkandal: function() {
+        }
+        ,fCleanAdSkandal: function() {
           setInterval(function(){
               $('#btm_banner').remove();
               $("[title$='Online']").remove();
           }, 1000);
+        }
+        ,fCleanAdMafia: function() {
+          $("[href^='magnet']").html("磁力链接");
         }
       }
     };
