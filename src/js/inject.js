@@ -21,6 +21,7 @@
         this.listen();
       },
       view: function() {
+        //Athletic Maria Pie Dominates Rossy Bush with Strap
         // 初始化数据
         this.functions.fInitInfo();
       },
@@ -40,6 +41,12 @@
           // https://rarbg.to
           if ( oData.localhost == "rarbg.to" ) {
             self.fCleanAdMafia();
+          }
+          // https://rarbg.to
+          if ( oData.localhost == "btkitty.pw" ) {
+            setInterval(function(){
+              $("iframe").remove();
+            }, 3000);
           }
         },
         fCleanAdxMissy: function() {
