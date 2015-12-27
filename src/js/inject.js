@@ -42,11 +42,11 @@
           if ( oData.localhost == "rarbg.to" ) {
             self.fCleanAdMafia();
           }
-          // https://rarbg.to
+          // https://btkitty.pw
           if ( oData.localhost == "btkitty.pw" ) {
             setInterval(function(){
               $("iframe").remove();
-            }, 3000);
+            }, 1000);
           }
         },
         fCleanAdxMissy: function() {
