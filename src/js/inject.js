@@ -32,7 +32,7 @@
           var self = this;
           console.log(oData.localhost);
 
-          if (document.title.indexOf('xMissy') != -1) {
+          if ( oData.localhost == "xmissy.nl") {
             self.fCleanAdxMissy();
           }
           if (document.title.indexOf('| Skandal Artis') != -1) {
@@ -47,6 +47,21 @@
             setInterval(function(){
               $("iframe").remove();
             }, 1000);
+          }
+          //
+          if ( oData.localhost == "1024zipai.com" ) {
+            setInterval(function(){
+              $(".banner").remove();
+              $("#haoetv_left").remove();
+            }, 100);
+          }
+          console.log(oData.localhost);
+          if ( oData.localhost == "www.wndflb.com" ) {
+              //$(".a:visited").remove();
+              var style = document.createElement('style');
+              style.type = 'text/css';
+              style.innerHTML=".tl th a:visited, .tl td.fn a:visited { color:#990066; }";
+              document.getElementsByTagName('HEAD').item(0).appendChild(style);
           }
         },
         fCleanAdxMissy: function() {
