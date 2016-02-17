@@ -55,13 +55,17 @@
               $("#haoetv_left").remove();
             }, 100);
           }
-          console.log(oData.localhost);
+          
           if ( oData.localhost == "www.wndflb.com" ) {
               //$(".a:visited").remove();
               var style = document.createElement('style');
               style.type = 'text/css';
+              // visited
               style.innerHTML=".tl th a:visited, .tl td.fn a:visited { color:#990066; }";
+              // 找福利
+              style.innerHTML+=".t_f a {color: #fff;background-color:#ff6699;padding:0 10px;}";
               document.getElementsByTagName('HEAD').item(0).appendChild(style);
+
           }
         },
         fCleanAdxMissy: function() {

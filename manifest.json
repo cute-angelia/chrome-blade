@@ -1,8 +1,8 @@
 {
   "name": "RemoveAd",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "manifest_version": 2,
-  "description": "去广告",
+  "description": "福利站去广告，显示好孩子看不见",
   "homepage_url": "http://chenyunwen.cn/Caoliu.plug/",
   "icons": {
     "16": "src/img/icons/icon16.png",
