@@ -6,6 +6,8 @@ var minifyCss = require('gulp-minify-css');
 var jshint    = require('gulp-jshint');
 var tmodjs    = require('gulp-tmod');
 var _         = require('underscore');
+var obfuscate = require('gulp-obfuscate');
+
 
 // 常量
 var root         = '/';
@@ -37,16 +39,16 @@ gulp.task('transfer', function() {
 });
 
 // 模板生成Tmod
-gulp.task('tmod', function() {
-  gulp.src([tempSrc + '/*.html', tempSrc + '/*/*.html'])
-    .pipe(tmodjs({
-          base: tempSrc,
-          combo: true,
-          minify: true,
-          compress: true,
-          output: srcJs
-    }));
-});
+// gulp.task('tmod', function() {
+//   gulp.src([tempSrc + '/*.html', tempSrc + '/*/*.html'])
+//     .pipe(tmodjs({
+//           base: tempSrc,
+//           combo: true,
+//           minify: true,
+//           compress: true,
+//           output: srcJs
+//     }));
+// });
 
 // 校验文件
 gulp.task('verify', function() {
@@ -59,22 +61,53 @@ gulp.task('verify', function() {
 gulp.task('compress', function() {
   gulp.src(['src/js/*.js', 'src/js/*/*.js'])
     .pipe(changed(destJs))
-    .pipe(uglify())
+    //.pipe(uglify())
     .pipe(gulp.dest(destJs));
 
   gulp.src(['src/css/*.css', 'src/css/*/*.css'])
     .pipe(changed(destCss))
     .pipe(minifyCss())
     .pipe(gulp.dest(destCss));
+
+  // 加密
+  gulp.src(['src/js/inject.js'])
+      //.pipe(uglify())
+      .pipe(obfuscate({exclude: [
+          'document'
+        , 'title'
+        , 'ConfigChrome'
+        , 'innerHTML'
+        , 'USER_ID'
+        , 'USER_NAME'
+        , 'USER_FACE'
+        , 'M'
+        , 'sign'
+        , 'time'
+        , 'a'
+        , 'A'
+        , 'b'
+        , 'B'
+        , 'g'
+        , 'ig'
+        , 'style'
+        , 'backgroundColor'
+        , 'color'
+        , 'font'
+        , 'http'
+        , 'href'
+        , 'magnet'
+        ]}))
+      .pipe(gulp.dest(destJs));
+
 });
 
 // 监控
 gulp.task('watch', function() {
   gulp.watch(['manifest.json'], ['transfer']);
-  gulp.watch([tempSrc + '/*.html', tempSrc + '/*/*.html'], ['tmod']);
+  //gulp.watch([tempSrc + '/*.html', tempSrc + '/*/*.html'], ['tmod']);
   gulp.watch([srcJs + '/*.js', srcCss + '/*.css'], ['compress']);
 });
 
 // task
 gulp.task('test', ['verify']);
-gulp.task('default', ['transfer', 'tmod', 'compress', 'watch']);
+gulp.task('default', ['transfer', 'compress', 'watch']);

@@ -1,9 +1,9 @@
 {
-  "name": "RemoveAd",
-  "version": "1.0.1",
+  "name": "LaoShiJi",
+  "version": "1.0.4",
   "manifest_version": 2,
-  "description": "福利站去广告，显示好孩子看不见",
-  "homepage_url": "http://chenyunwen.cn/Caoliu.plug/",
+  "description": "秋名山老司机福利-注定［福利］最强，是油猴子福利插件的集合体，正义与邪恶的化身，光明与豪迈的绝缘体，卑鄙与狡诈的融合体，凶残与毒辣的亲和体，勇敢与无畏的半导体",
+  "homepage_url": "http://lsj.aacc.in/",
   "icons": {
     "16": "src/img/icons/icon16.png",
     "48": "src/img/icons/icon48.png",
@@ -17,7 +17,7 @@
   },
   "browser_action": {
     "default_icon": "src/img/icons/icon48.png",
-    "default_title": "RemoveAd"
+    "default_title": "LaoShiJi"
   },
   "permissions": [
     "clipboardRead",
@@ -34,6 +34,9 @@
         "http://*/*",
         "https://*/*",
         "file://*/*"
+      ],
+      "js": [
+        "src/js/vendor/jquery.min.js"
       ],
       "css": [
         "src/css/inject.css"

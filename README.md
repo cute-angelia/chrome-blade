@@ -1,30 +1,14 @@
-CL1024 - chrome extension
+Lsj - chrome extension
 ===========
 
-## command 开发指令
-	gulp
+老司机插件集合体
 
-## feature
-
-* 帖子高亮
-
-* 链接跳转
-
-* 种子转化
-
-* 跳转楼层
-
-* 图片缩放
-
-* 只看楼主
-
-* 我要屏蔽
+* 福利吧，好孩子看不见
+* 琉璃神社老司机
 
 
-## question
+[OPEN PAGE](http://lsj.aacc.in)
 
-* 意见反馈
 
-* 访问统计
+> [老司机传说](https://sleazyfork.org/zh-CN/scripts/22747-%E8%80%81%E5%8F%B8%E6%9C%BA%E4%BC%A0%E8%AF%B4/code)
 
-<del>* 高亮颜色定制</del>
