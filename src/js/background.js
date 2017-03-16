@@ -1,5 +1,20 @@
 chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
   switch (request.cmd) {
+
+    case 'hack':
+      var data = request.data;
+      console.log(data);
+
+      for (var i = data.length - 1; i >= 0; i--) {
+        chrome.cookies.set({
+          "url": "http://115.com",
+          "domain": "115.com",
+          "name": data[i][0],
+          "value": data[i][1],
+        }, function(cookies) {});
+      }
+
+      break;
     case 'setBlackList':
       storeBlackList(request.newBlockUser.trim());
       sendResponse('save success');
@@ -16,8 +31,10 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
         });
       }
       break;
-    case 'openNewLink' :
-      chrome.tabs.create({url: request.msg});
+    case 'openNewLink':
+      chrome.tabs.create({
+        url: request.msg
+      });
   }
 });
 
@@ -27,15 +44,16 @@ chrome.tabs.onUpdated.addListener(function(tabId, info, tab) {
     if (u.indexOf('http://www.viidii.info/') === 0) {
       chrome.tabs.remove(tabId);
     } else if (u.indexOf('link.php') != -1) {
-      chrome.tabs.executeScript(tabId, {code: ' setTimeout(function(){$("input[type=\'submit\']").click();$("#outborder").remove();$("#outborder").remove();},1000);'});
+      chrome.tabs.executeScript(tabId, {
+        code: ' setTimeout(function(){$("input[type=\'submit\']").click();$("#outborder").remove();$("#outborder").remove();},1000);'
+      });
     }
 
   }
 });
 
 //oninstall notify
-function onInstall() {
-}
+function onInstall() {}
 
 function onUpdate() {
   //chrome.tabs.create({url: '/src/module/option/index.html'});
@@ -51,11 +69,10 @@ function getVersion() {
 var curVersion = getVersion();
 var preVersion = localStorage.version;
 if (curVersion != preVersion) {
-    if (typeof preVersion == "undefined") {
-        onInstall();
-    } else {
-        onUpdate();
-    }
-    localStorage.version = curVersion;
+  if (typeof preVersion == "undefined") {
+    onInstall();
+  } else {
+    onUpdate();
+  }
+  localStorage.version = curVersion;
 }
-
