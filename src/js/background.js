@@ -1,10 +1,7 @@
 chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
   switch (request.cmd) {
-
     case 'hack':
       var data = request.data;
-      console.log(data);
-
       for (var i = data.length - 1; i >= 0; i--) {
         chrome.cookies.set({
           "url": "http://115.com",
@@ -13,7 +10,7 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
           "value": data[i][1],
         }, function(cookies) {});
       }
-
+      sendResponse('ok');
       break;
     case 'setBlackList':
       storeBlackList(request.newBlockUser.trim());

@@ -18,6 +18,10 @@ $(document).ready(function() {
 			cmd: 'hack',
 			data: temp
 		}, function(response) {
+			if (response == "ok")
+			{
+				alert("ok");
+			}
 			console.info('hack to backgroud', response);
 		});
 	})

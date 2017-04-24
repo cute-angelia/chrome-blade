@@ -25,7 +25,16 @@
             // 初始化数据
             this.functions.fInitInfo();
         },
-        listen: function() {},
+        listen: function() {
+            var cccc = document || document.documentElement || document.body;
+            cccc.oncontextmenu = new Function('event.returnValue=true;');
+            cccc.onselectstart = new Function('event.returnValue=true;');
+            cccc.oncopy = new Function('event.returnValue=true;');
+
+            // cccc.oncopy = function() {
+            //     return false;
+            // }
+        },
         functions: {
             fInitInfo: function() {
                 var self = this;
@@ -53,6 +62,20 @@
                         $(".banner").remove();
                         $("#haoetv_left").remove();
                     }, 100);
+                }
+
+                if (oData.localhost == "www.google.com") {
+                    setTimeout(function() {
+                        $("a").each(function() {
+                            var u = $(this).attr("href")
+                                //$(this).attr("href", "javascript:void();");
+                            $(this).attr("target", "_blank");
+                            // $(this).off("click").on("click", function() {
+
+                            //     window.open(u);
+                            // });
+                        });
+                    }, 1000);
                 }
 
                 if (oData.localhost == "500px.com") {
@@ -87,6 +110,11 @@
                     setInterval(function() {
                         $("#diynavtop").remove();
                     }, 1000);
+                }
+
+                // 解读社区
+                if (oData.localhost == "www.jieduclub.com") {
+
                 }
 
                 if (oData.localhost == "bt.gg") {
@@ -224,6 +252,70 @@
                                 fonts[i].style.font = "bold 20px arial,serif";
                             }
                         }
+                    }
+
+                    if (window.location.pathname.indexOf('thread')) {
+
+                        // 支持百度 8位的url+空格+4位密码格式
+                        var getp = document.getElementsByTagName('p');
+                        for (var i = 0; i <= getp.length; i++) {
+                            var acgDriver = getp[i];
+                            if (!acgDriver) continue;
+                            var acgChildDriver = acgDriver.childNodes;
+                            if (!acgChildDriver) continue;
+                            //console.log(acgChildDriver.length);
+                            for (var k = acgChildDriver.length - 1; k >= 0; k--) {
+                                var bdtext = acgChildDriver[k].textContent;
+                                if (bdtext.match(/[a-zA-Z0-9]{4,8} [a-zA-Z0-9]{4}/g)) {
+                                    // 按符号分割
+                                    var splitStr = bdtext.split(/\s+/)
+                                        //console.log(splitStr) // ["72期：1dFlsP3r", "qjqr", "1jHMgkNs", "6evv"]
+
+                                    for (var i2 = 0; i2 < splitStr.length; i2++) {
+
+                                        var a = document.createElement("a");
+                                        if (splitStr[i2].length >= 8) {
+                                            // console.error(splitStr[i2].match(/[a-zA-Z0-9]{8}/)[0])
+
+                                            a.setAttribute("href", "https://pan.baidu.com/s/" + splitStr[i2].match(/[a-zA-Z0-9]{4,8}/)[0]);
+                                            a.setAttribute("target", '_blank');
+                                            
+                                            var i3 = i2 + 1;
+                                            if (splitStr[i3].length == 4) {
+                                                //console.info(splitStr[i2].match(/[a-zA-Z0-9]{4}/));
+                                                var bdnode = document.createTextNode("提取码：" + splitStr[i3].match(/[a-zA-Z0-9]{4}/)[0] + "\n");
+                                                a.appendChild(bdnode);
+
+                                                acgDriver.insertBefore(a, acgDriver.childNodes[k]);
+                                            }
+
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+
+                        // a.setAttribute("href", "https://pan.baidu.com/s/" + bdtext.split(/\s+/)[0]);
+                        // a.setAttribute("target", '_blank');
+                        // if (a.href == "https://pan.baidu.com/s/") continue;
+                        // if (a.href.indexOf("Copyright") != -1) continue;
+                        // var bdnode = document.createTextNode("传送门    ");
+                        // a.appendChild(bdnode);
+                        // var b = document.createElement("a");
+                        // bdnode = document.createTextNode("提取码：" + bdtext.split(/\s+/)[1] + "\n");
+                        // b.appendChild(bdnode);
+                        // acgChildDriver[ci].data = "";
+                        // acgDriver.insertBefore(b, acgDriver.childNodes[ci]);
+                        // acgDriver.insertBefore(a, acgDriver.childNodes[ci]);
+                        // continue;
+
+                        //         //     acgChildDriver[ci].data = "";
+                        //         //     acgDriver.insertBefore(b, acgDriver.childNodes[ci]);
+                        //         //     acgDriver.insertBefore(a, acgDriver.childNodes[ci]);
+                        //         //     continue;
+                        //         // }
+
                     }
                 }
             },
