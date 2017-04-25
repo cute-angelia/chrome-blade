@@ -38,6 +38,7 @@ gulp.task('transfer', function() {
   });
 });
 
+
 // 模板生成Tmod
 // gulp.task('tmod', function() {
 //   gulp.src([tempSrc + '/*.html', tempSrc + '/*/*.html'])
@@ -57,11 +58,12 @@ gulp.task('verify', function() {
      .pipe(jshint.reporter('default'));
 });
 
+
 // 压缩
 gulp.task('compress', function() {
   gulp.src(['src/js/*.js', 'src/js/*/*.js'])
-    .pipe(changed(destJs))
     //.pipe(uglify())
+    .pipe(changed(destJs))
     .pipe(gulp.dest(destJs));
 
   gulp.src(['src/css/*.css', 'src/css/*/*.css'])
@@ -71,12 +73,27 @@ gulp.task('compress', function() {
 
   // 加密
   gulp.src(['src/js/inject.js'])
-      //.pipe(uglify())
       .pipe(obfuscate({exclude: [
           'document'
         , 'title'
+        , 'onclick'
+        , 'oncontextmenu'
+        , 'onselectstart'
+        , 'oncopy'
+        , 'target'
+        , 'value'
+        , 'oD_button'
+        , 'placeholder'
+        , 'attr'
+        , 'id'
+        , 'type'
+        , 'data'
+        , 'zindex'
         , 'ConfigChrome'
+        , 'textContent'
         , 'innerHTML'
+        , 'returnValue'
+        , 'i'
         , 'USER_ID'
         , 'USER_NAME'
         , 'USER_FACE'

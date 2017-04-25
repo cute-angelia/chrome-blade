@@ -38,7 +38,7 @@
         functions: {
             fInitInfo: function() {
                 var self = this;
-                console.log(oData.localhost);
+                console.log(oData.localhost, "Laosiji");
 
                 if (oData.localhost == "xmissy.nl") {
                     self.fCleanAdxMissy();
@@ -279,14 +279,27 @@
 
                                             a.setAttribute("href", "https://pan.baidu.com/s/" + splitStr[i2].match(/[a-zA-Z0-9]{4,8}/)[0]);
                                             a.setAttribute("target", '_blank');
-                                            
+
                                             var i3 = i2 + 1;
                                             if (splitStr[i3].length == 4) {
                                                 //console.info(splitStr[i2].match(/[a-zA-Z0-9]{4}/));
                                                 var bdnode = document.createTextNode("提取码：" + splitStr[i3].match(/[a-zA-Z0-9]{4}/)[0] + "\n");
-                                                a.appendChild(bdnode);
 
+                                                // 创建复制按钮
+                                                // var btnEl;
+                                                // try {
+                                                //     btnEl = document.createElement('<button name="damon" class="btn" data-clipboard-text="' + splitStr[i3].match(/[a-zA-Z0-9]{4}/)[0] + '">复制提取码</button>');
+                                                // } catch (e) {}
+                                                // if (!btnEl) {
+                                                //     btnEl = document.createElement("input");
+                                                //     btnEl.type = "button";
+                                                //     btnEl.value = "复制提取码";
+                                                //     btnEl.setAttribute('data-clipboard-text', splitStr[i3].match(/[a-zA-Z0-9]{4}/)[0]);
+                                                // }
+
+                                                a.appendChild(bdnode);
                                                 acgDriver.insertBefore(a, acgDriver.childNodes[k]);
+                                                //acgDriver.insertBefore(btnEl, acgDriver.childNodes[k]);
                                             }
 
                                         }
