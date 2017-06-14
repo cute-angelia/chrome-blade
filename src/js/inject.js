@@ -64,6 +64,12 @@
                     }, 100);
                 }
 
+                if (oData.localhost == "pan.baidu.com") {
+                    setInterval(function() {
+                        console.log(window.yunData);
+                    }, 1000);
+                }
+
                 if (oData.localhost == "www.google.com") {
                     setTimeout(function() {
                         $("a").each(function() {
