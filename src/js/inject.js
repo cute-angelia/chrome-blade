@@ -92,6 +92,14 @@
                     }, 1000);
                 }
 
+                if (oData.localhost == "jieduclub.com") {
+                  setInterval(function() {
+                    var csdn123_obj1 = function(){
+                      return false;
+                    };
+                  }, 1000);
+                }
+
                 if (oData.localhost == "55po.com") {
                     setInterval(function() {
                         $("div[class=textwidget]").remove();
@@ -220,7 +228,7 @@
                 }
 
                 // 福利吧
-                if (oData.localhost == "www.wndflb.com") {
+                if (oData.localhost == "www.wndflb.com" || oData.localhost == "www.wnflb.com") {
                     //$(".a:visited").remove();
                     var style = document.createElement('style');
                     style.type = 'text/css';
