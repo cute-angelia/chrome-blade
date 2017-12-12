@@ -1,28 +1,51 @@
 {
-  "name": "Chrome.RemoveAd",
-  "version": "1.0.5",
+  "name": "laosiji-blade",
+  "description": "laosiji-blade",
+  "author": "cyw <rose20.99.c@gmail.com>",
+  "private": true,
+  "scripts": {
+    "dev": "webpack-dev-server --inline --hot",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "watch": "cross-env NODE_ENV=dev webpack -p --watch",
+    "deploy": "gulp"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "axios-cache-plugin": "0.0.7",
+    "babel-core": "^6.0.0",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.0.0",
+    "cross-env": "^4.0.0",
+    "css-loader": "^0.28.1",
+    "file-loader": "^0.11.1",
+    "vue": "^2.3.3",
+    "vue-loader": "^12.2.2",
+    "vue-template-compiler": "^2.3.3",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.4.5",
+    "xml-js": "^1.5.1"
+  },
   "devDependencies": {
-   "gulp": "^3.9.0",
-    "gulp-changed": "^1.3.0",
+    "clipboard": "^1.7.1",
+    "gulp": "^3.9.1",
+    "gulp-changed": "^3.1.0",
+    "gulp-clean-css": "^3.9.0",
     "gulp-copy": "0.0.2",
     "gulp-jshint": "^2.0.0",
     "gulp-minify-css": "^1.2.4",
     "gulp-obfuscate": "^0.2.9",
     "gulp-tmod": "^1.0.1",
     "gulp-uglify": "^1.4.0",
-    "jshint": "^2.8.0",
-    "parse-torrent": "^5.7.0",
-    "underscore": "^1.8.3"
-  },
-  "description": "Chrome.RemoveAd chrome ext",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@git.oschina.net:surprise/Chrome.RemoveAd.git"
-  },
-  "author": "rose1988.c@gmail.com",
-  "license": "ISC"
+    "jquery": "^3.2.1",
+    "run-sequence": "^2.2.0",
+    "surge": "^0.19.0",
+    "svg-inline-loader": "^0.8.0",
+    "timeago.js": "^3.0.2",
+    "ug": "github:FF-Mercurial/ug",
+    "uglify-js": "^2.8.29",
+    "uikit": "^3.0.0-beta.30",
+    "underscore": "^1.8.3",
+    "vue-timeago": "^3.3.6"
+  }
 }

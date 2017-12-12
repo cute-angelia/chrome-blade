@@ -1,130 +1,128 @@
-// defined
-var gulp      = require('gulp');
-var changed   = require('gulp-changed');
-var uglify    = require('gulp-uglify');
-var minifyCss = require('gulp-minify-css');
-var jshint    = require('gulp-jshint');
-var tmodjs    = require('gulp-tmod');
-var _         = require('underscore');
-var obfuscate = require('gulp-obfuscate');
-
+var fs = require('fs');
+var path = require('path');
+var gulp = require('gulp');
+var changed = require('gulp-changed');
+var _ = require('underscore');
+var webpack = require('webpack');
+var ug = require('ug');
+let cleanCSS = require('gulp-clean-css');
+var runSequence = require('run-sequence');
 
 // 常量
-var root         = '/';
-var dest         = 'build';
-var srcJs        = 'src/js'
-var srcCss       = 'src/css'
-var destJs       = dest + '/' + srcJs;
-var destCss      = dest + '/' + srcCss;
-var tempSrc      = 'src/module/option/tpl';
-var tempJsDest   = srcJs;
-var tempHtmlDest = 'src/module/option';
+var root = '/';
+var dest = 'build';
+var srcJs = 'src/js'
+var srcCss = 'src/css'
+var destJs = dest + '/' + srcJs;
+var destCss = dest + '/' + srcCss;
 
-// 转移文件
-gulp.task('transfer', function() {
-  var lists = {
-    '': ['manifest.json'],
-    'src/img': ['src/img/*/*', '!src/img/upload/*'],
-    'src/js/vendor': ['src/js/vendor/*'],
-    'src/css': ['src/css/*/*', 'src/css/*.css'],
-    'src/module/option/': 'src/module/option/index.html'
-  };
+gulp.task('set-dev-node-env', function () {
+  return process.env.NODE_ENV = 'development';
+});
 
-  _.each(lists, function(value, key) {
-    var destdir = dest + '/' + key;
-    return gulp.src(value)
-     .pipe(changed(destdir))
-     .pipe(gulp.dest(destdir));
+gulp.task('set-prod-node-env', function () {
+  return process.env.NODE_ENV = 'production';
+});
+
+// webpack
+gulp.task('webpack', ['set-prod-node-env'], function (callback) {
+  var webpackConfig = require('./webpack.config.js')
+  webpack(webpackConfig, function (err, stats) {
+    callback();
   });
 });
 
-
-// 模板生成Tmod
-// gulp.task('tmod', function() {
-//   gulp.src([tempSrc + '/*.html', tempSrc + '/*/*.html'])
-//     .pipe(tmodjs({
-//           base: tempSrc,
-//           combo: true,
-//           minify: true,
-//           compress: true,
-//           output: srcJs
-//     }));
-// });
-
-// 校验文件
-gulp.task('verify', function() {
-  gulp.src(['src/js/*.js', '!src/js/template.js'])
-     .pipe(jshint())
-     .pipe(jshint.reporter('default'));
+// 转移文件 目标 <= 源
+gulp.task('transfer', function () {
+  var lists = {
+    '': ['manifest.json'],
+    'app/assets/js/vendor': ['app/assets/js/vendor/*'],
+    'app/assets/img/icons': ['app/assets/img/icons/*'],
+    'app/assets/css': ['app/assets/css/*'],
+    'app/dist': ['app/dist/*'],
+    'app/option/assets/css': ['app/option/assets/css/*'],
+    'app/option/assets/fonts': ['app/option/assets/fonts/*'],
+    'app/option/assets/img': ['app/option/assets/img/*'],
+    'app/option': ['app/option/*.html'],
+  };
+  _.each(lists, function (value, key) {
+    var destdir = dest + '/' + key;
+    console.log('transfer ->', value);
+    return gulp.src(value)
+      .pipe(changed(destdir))
+      .pipe(gulp.dest(destdir));
+  });
 });
 
+// ug
+var ugNo = [
+  'FileSaver.min.js',
+  'imagesloaded.pkgd.min.js',
+  'jquery.min.js',
+  'jszip.min.js',
+  'vue.min.js',
+  'masonry.pkgd.min.js',
+  'underscore.min.js',
+  'jquery-3.2.1.min.js'
+];
+gulp.task('ug', function () {
+  setTimeout(function () {
+    var inplace = function (file) {
 
-// 压缩
-gulp.task('compress', function() {
-  gulp.src(['src/js/*.js', 'src/js/*/*.js'])
-    //.pipe(uglify())
-    .pipe(changed(destJs))
-    .pipe(gulp.dest(destJs));
+      try {
+        fs.writeFileSync(file, ug(fs.readFileSync(file)));
+        // 此处是可能产生例外的语句
+      } catch (error) {
+        console.log(error);
+        // 此处是负责例外处理的语句
+      } finally {
+        // 此处是出口语句
+      }
 
-  gulp.src(['src/css/*.css', 'src/css/*/*.css'])
-    .pipe(changed(destCss))
-    .pipe(minifyCss())
-    .pipe(gulp.dest(destCss));
+    };
 
-  // 加密
-  gulp.src(['src/js/inject.js'])
-      .pipe(obfuscate({exclude: [
-          'document'
-        , 'title'
-        , 'onclick'
-        , 'oncontextmenu'
-        , 'onselectstart'
-        , 'oncopy'
-        , 'target'
-        , 'value'
-        , 'oD_button'
-        , 'placeholder'
-        , 'attr'
-        , 'id'
-        , 'type'
-        , 'data'
-        , 'zindex'
-        , 'ConfigChrome'
-        , 'textContent'
-        , 'innerHTML'
-        , 'returnValue'
-        , 'i'
-        , 'USER_ID'
-        , 'USER_NAME'
-        , 'USER_FACE'
-        , 'M'
-        , 'sign'
-        , 'time'
-        , 'a'
-        , 'A'
-        , 'b'
-        , 'B'
-        , 'g'
-        , 'ig'
-        , 'style'
-        , 'backgroundColor'
-        , 'color'
-        , 'font'
-        , 'http'
-        , 'href'
-        , 'magnet'
-        ]}))
-      .pipe(gulp.dest(destJs));
+    (function walk(dir) {
+      if (fs.statSync(dir).isFile()) {
+        if (path.extname(dir) === '.js') {
+          var filename = dir.substr(dir.lastIndexOf('/') + 1);
+          if (ugNo.indexOf(filename) == -1) {
+            console.log(dir, filename);
+            inplace(dir);
+          }
+        }
+      } else {
+        fs.readdirSync(dir).forEach(function (filename) {
+          var filepath = path.resolve(dir, filename);
+          walk(filepath);
+        });
+      }
+    })(dest);
+  }, 500);
+});
 
+// minify-css
+gulp.task('minify-css', () => {
+  var lists = {
+    'app/assets/css': ['build/app/assets/css/*.css'],
+    'app/options/assets/css': ['build/app/options/assets/css/*.css'],
+  };
+  _.each(lists, function (value, key) {
+    var destdir = dest + '/' + key;
+    //console.log(destdir, value)
+    return gulp.src(value)
+      .pipe(cleanCSS({ compatibility: 'ie8' }))
+      .pipe(gulp.dest(destdir));
+  });
 });
 
 // 监控
-gulp.task('watch', function() {
+gulp.task('watch', function () {
   gulp.watch(['manifest.json'], ['transfer']);
-  //gulp.watch([tempSrc + '/*.html', tempSrc + '/*/*.html'], ['tmod']);
-  gulp.watch([srcJs + '/*.js', srcCss + '/*.css'], ['compress']);
+  gulp.watch(['app/*/*.js', 'app/*.js', '!app/collect.entry.js'], ['default']);
+  gulp.watch([srcJs + '/*.js', srcCss + '/*.css'], ['default']);
 });
 
-// task
-gulp.task('test', ['verify']);
-gulp.task('default', ['transfer', 'compress', 'watch']);
+gulp.task('default', function (callback) {
+  runSequence('webpack', 'transfer', 'ug', 'minify-css',
+    callback);
+});

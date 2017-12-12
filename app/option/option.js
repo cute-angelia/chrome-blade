@@ -4,9 +4,9 @@ $(document).ready(function() {
 
 		var temp = [];
 		var strs = text.split(";");
-		for (i = 0; i < strs.length; i++) {
+		for (var i = 0; i < strs.length; i++) {
 			var then = strs[i];
-			values = then.split("=");
+			var values = then.split("=");
 			values[0] = $.trim(values[0]);
 
 			if (values.length > 1) {

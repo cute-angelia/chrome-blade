@@ -1,24 +1,24 @@
 {
-  "name": "LaoShiJi",
-  "version": "1.0.5",
+  "name": "老司机的刀",
+  "version": "1.0.7",
   "manifest_version": 2,
-  "description": "秋名山老司机福利-注定［福利］最强，是油猴子福利插件的集合体，正义与邪恶的化身，光明与豪迈的绝缘体，卑鄙与狡诈的融合体，凶残与毒辣的亲和体，勇敢与无畏的半导体",
+  "description": "秋名山老司机手中的刀",
   "homepage_url": "http://lsj.aacc.in/",
   "icons": {
-    "16": "src/img/icons/icon16.png",
-    "48": "src/img/icons/icon48.png",
-    "128": "src/img/icons/icon128.png"
+    "16": "app/assets/img/icons/icon16.png",
+    "48": "app/assets/img/icons/icon48.png",
+    "128": "app/assets/img/icons/icon128.png"
   },
   "background": {
     "scripts": [
-      "src/js/background.js"
+      "app/dist/background.entry.js"
     ],
     "persistent": true
   },
-  "options_page": "src/module/option/index.html",
+  "options_page": "app/option/index.html",
   "browser_action": {
-    "default_icon": "src/img/icons/icon48.png",
-    "default_title": "LaoShiJi"
+    "default_icon": "app/assets/img/icons/icon48.png",
+    "default_title": "老司机的刀"
   },
   "permissions": [
     "cookies",
@@ -37,10 +37,10 @@
       "file://*/*"
     ],
     "js": [
-      "src/js/vendor/jquery.min.js"
+      "app/assets/js/vendor/jquery.min.js"
     ],
     "css": [
-      "src/css/inject.css"
+      "app/assets/css/inject.css"
     ]
   }, {
     "matches": [
@@ -49,10 +49,10 @@
       "file://*/*"
     ],
     "js": [
-      "src/js/vendor/jquery.min.js",
-      "src/js/vendor/underscore.min.js",
-      "src/js/inject.js",
-      "src/js/vendor/clipboard.min.js"
+      "app/assets/js/vendor/jquery.min.js",
+      "app/assets/js/vendor/underscore.min.js",
+      "app/dist/inject.entry.js",
+      "app/assets/js/vendor/clipboard.min.js"
     ]
   }],
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
