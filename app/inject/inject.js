@@ -11,6 +11,8 @@
 import fuliba from './site/fuliba';
 import xmissy from './site/xmissy';
 
+var $ = require('jquery');
+
 (function () {
     'use strict';
     var ui = {};
@@ -240,10 +242,7 @@ import xmissy from './site/xmissy';
             ,
             fCleanAdMafia: function () {
                 $("[href^='magnet']").html("磁力链接");
-            }
-            // 热度颜色
-            ,
-
+            },
             // 磁力下载
             fAddBox: function () {
                 var oD_box = document.createElement("div");

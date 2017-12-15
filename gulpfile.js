@@ -63,7 +63,11 @@ var ugNo = [
   'vue.min.js',
   'masonry.pkgd.min.js',
   'underscore.min.js',
-  'jquery-3.2.1.min.js'
+  'clipboard.min.js',
+  'require.js',
+  'underscore.string.min.js',
+  'jquery-3.2.1.min.js',
+  'inject.entry.js'
 ];
 gulp.task('ug', function () {
   setTimeout(function () {
