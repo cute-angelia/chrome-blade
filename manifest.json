@@ -1,6 +1,6 @@
 {
   "name": "老司机的刀",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "manifest_version": 2,
   "description": "秋名山老司机手中的刀",
   "homepage_url": "http://lsj.aacc.in/",
@@ -53,7 +53,8 @@
       "app/assets/js/vendor/underscore.min.js",
       "app/dist/inject.entry.js",
       "app/assets/js/vendor/clipboard.min.js"
-    ]
+    ],
+    "run_at": "document_start"
   }],
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }

@@ -127,6 +127,6 @@ gulp.task('watch', function () {
 });
 
 gulp.task('default', function (callback) {
-  runSequence('webpack', 'transfer', 'ug', 'minify-css',
+  runSequence('webpack', 'transfer',  'minify-css',
     callback);
 });

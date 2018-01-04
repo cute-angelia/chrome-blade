@@ -131,6 +131,22 @@ var $ = require('jquery');
 
                 }
 
+                if (oData.localhost.indexOf('tumblr.com') > 0) {
+                    document.onkeydown = function () {
+                        if (event.keyCode == 113) { //F2
+                            window.location.href = '//' + oData.localhost + '/archive'
+                        }
+                    };
+                }
+
+                // twitter.com
+                if (oData.localhost == "twitter.com") {
+                    setInterval(function () {
+                        $(".GalleryNav--prev").width("15%");
+                        $("GalleryTweet").style({ 'bottom': '250px;' });
+                    }, 1000);
+                }
+
                 if (oData.localhost == "bt.gg") {
                     setInterval(function () {
                         $(".sendLx").each(function () {
