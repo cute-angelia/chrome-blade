@@ -46,7 +46,13 @@ var $ = require('jquery');
                 console.log(oData.localhost, "Laosiji");
 
                 if (oData.localhost == "xmissy.nl") {
-                    xmissy();
+                    let myInterval = setInterval(function () {
+                        xmissy();
+                        // 清理定时器
+                        setTimeout(function () {
+                            clearInterval(myInterval)
+                        }, 10000);
+                    }, 1000);
                 }
                 if (document.title.indexOf('| Skandal Artis') != -1) {
                     self.fCleanAdSkandal();
@@ -245,7 +251,13 @@ var $ = require('jquery');
 
                 // 福利吧
                 if (oData.localhost == "www.wndflb.com" || oData.localhost == "www.wnflb.com") {
-                    fuliba();
+                    let myInterval = setInterval(function () {
+                        fuliba();
+                        // 清理定时器
+                        setTimeout(function () {
+                            clearInterval(myInterval)
+                        }, 10000);
+                    }, 1000);
                 }
             },
             fCleanAdSkandal: function () {

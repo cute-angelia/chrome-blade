@@ -1,4 +1,4 @@
-let f = function(){
+let f = function () {
     $('.noclick-small-banner, .sinclubbar, .noclick-large-banner').remove();
     $('#loadallbutton').click();
     $('#block-comments, #block-toolbar, #histats_counter, center').remove();
