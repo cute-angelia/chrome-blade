@@ -1,5 +1,10 @@
 // fuliba.net
 let fuliba = function () {
+
+    if (!document.getElementsByTagName('HEAD').item(0)) {
+        return ;
+    }
+
     let style = document.createElement('style');
     style.type = 'text/css';
     style.innerHTML = ".tl th a:visited, .tl td.fn a:visited { color:#990066; }";

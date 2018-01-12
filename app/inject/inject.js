@@ -10,6 +10,7 @@
 
 import fuliba from './site/fuliba';
 import xmissy from './site/xmissy';
+import btkitty from './site/btkitty';
 
 var $ = require('jquery');
 
@@ -62,9 +63,16 @@ var $ = require('jquery');
                     self.fCleanAdMafia();
                 }
                 // https://btkitty.pw
-                if (oData.localhost == "btkitty.pw" || oData.localhost == "btkitty.bid") {
-                    setInterval(function () {
-                        $("iframe").remove();
+                if (oData.localhost == "btkitty.pw"
+                    || oData.localhost == "btkitty.bid"
+                    || oData.localhost == "cnbtkitty.com"
+                ) {
+                    let myInterval = setInterval(function () {
+                        btkitty();
+                        // 清理定时器
+                        setTimeout(function () {
+                            clearInterval(myInterval)
+                        }, 10000);
                     }, 1000);
                 }
                 //
