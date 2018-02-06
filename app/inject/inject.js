@@ -67,13 +67,13 @@ var $ = require('jquery');
                     || oData.localhost == "btkitty.bid"
                     || oData.localhost == "cnbtkitty.com"
                 ) {
-                    let myInterval = setInterval(function () {
-                        btkitty();
-                        // 清理定时器
-                        setTimeout(function () {
-                            clearInterval(myInterval)
-                        }, 10000);
-                    }, 1000);
+                    // let myInterval = setInterval(function () {
+                    //     btkitty();
+                    //     // 清理定时器
+                    //     setTimeout(function () {
+                    //         clearInterval(myInterval)
+                    //     }, 10000);
+                    // }, 1000);
                 }
                 //
                 if (oData.localhost == "1024zipai.com") {
