@@ -11,6 +11,7 @@
 import fuliba from './site/fuliba';
 import xmissy from './site/xmissy';
 import btkitty from './site/btkitty';
+import google from './site/google';
 
 var $ = require('jquery');
 
@@ -58,10 +59,16 @@ var $ = require('jquery');
                 if (document.title.indexOf('| Skandal Artis') != -1) {
                     self.fCleanAdSkandal();
                 }
+
                 // https://rarbg.to
                 if (oData.localhost == "rarbg.to") {
                     self.fCleanAdMafia();
                 }
+
+                if (oData.localhost == "ipv4.google.com") {
+                    google();
+                }
+
                 // https://btkitty.pw
                 if (oData.localhost == "btkitty.pw"
                     || oData.localhost == "btkitty.bid"
