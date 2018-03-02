@@ -69,6 +69,10 @@ var $ = require('jquery');
                     google();
                 }
 
+                if (oData.localhost == "duckduckgo.com") {
+                    $(".results--main").css('max-width','100%');
+                }
+
                 // https://btkitty.pw
                 if (oData.localhost == "btkitty.pw"
                     || oData.localhost == "btkitty.bid"
