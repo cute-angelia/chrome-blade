@@ -69,8 +69,16 @@ var $ = require('jquery');
                     google();
                 }
 
+                if (oData.localhost == "mrcong.com") {
+                    setInterval(function () {
+                        document.getElementById("fukie2").style.display = "";
+                    }, 1000);
+                }
+
                 if (oData.localhost == "duckduckgo.com") {
-                    $(".results--main").css('max-width','100%');
+                    setInterval(function () {
+                        $(".results--ads").remove();
+                    }, 1000);
                 }
 
                 // https://btkitty.pw
