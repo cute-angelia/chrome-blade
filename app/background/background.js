@@ -35,24 +35,6 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
   }
 });
 
-chrome.tabs.onUpdated.addListener(function (tabId, info, tab) {
-  var u = info.url;
-  if (u) {
-    if (u.indexOf('http://www.viidii.info/') === 0) {
-      var hasNewUrls = u.split('?');
-      if (hasNewUrls.length > 1) {
-        chrome.tabs.create({ url: hasNewUrls[1] });
-        return;
-      }
-      chrome.tabs.remove(tabId);
-    } else if (u.indexOf('link.php') != -1) {
-      chrome.tabs.executeScript(tabId, { code: ' setTimeout(function(){$("input[type=\'submit\']").click();$("#outborder").remove();$("#outborder").remove();},1000);' });
-    }
-
-  }
-});
-
-
 //oninstall notify
 function onInstall() {}
 

@@ -102,10 +102,37 @@ var $ = require('jquery');
                     }, 100);
                 }
 
-                if (oData.localhost == "pan.baidu.com") {
+                if (oData.localhost == "saveurl.kikinote.net") {
                     setInterval(function () {
-                        console.log(window.yunData);
+                        console.log( $(".redirect > a").attr("href"));
+                        window.location.href = $(".redirect > a").attr("href");
+                    }, 100);
+                }
+
+                if (oData.localhost == "www.avny.wang") {
+                    setInterval(function () {
+                        $("img").removeClass("img-polaroid")
+                    }, 100);
+                }
+
+                if (oData.localhost == "www.tangbure.org") {
+                    setTimeout(function () {
+                        let src = $("#loadingCheck").attr('src');
+
+                        if (src) {
+                            let find = /v2\/blog\/(.*)\/avatar/;
+                            let temp = find.exec(src);
+                            let href = 'https://' + temp[1] + '/archive';
+                            $("#loadingCheck").parent().append('<a target="_blank" href="' + href + '">TUMBLR</a>');
+                        }
+
                     }, 1000);
+                }
+
+                if (oData.localhost == "pan.baidu.com") {
+                    // setInterval(function () {
+                    //     console.log(yunData);
+                    // }, 10000);
                 }
 
                 if (oData.localhost == "www.google.com") {
