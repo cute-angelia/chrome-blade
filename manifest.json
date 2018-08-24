@@ -1,8 +1,8 @@
 {
-  "name": "老司机的刀",
-  "version": "1.1.1",
+  "name": "秋名山老司机的剃须刀",
+  "version": "1.1.2",
   "manifest_version": 2,
-  "description": "秋名山老司机手中的刀",
+  "description": "低调,低调,低调",
   "homepage_url": "http://lsj.aacc.in/",
   "icons": {
     "16": "app/assets/img/icons/icon16.png",
@@ -10,15 +10,13 @@
     "128": "app/assets/img/icons/icon128.png"
   },
   "background": {
-    "scripts": [
-      "app/dist/background.entry.js"
-    ],
+    "scripts": ["app/dist/background.entry.js"],
     "persistent": true
   },
   "options_page": "app/option/index.html",
   "browser_action": {
-    "default_icon": "app/assets/img/icons/icon48.png",
-    "default_title": "老司机的刀"
+    "default_icon": "app/assets/img/icons/icon512.png",
+    "default_title": "秋名山老司机的剃须刀"
   },
   "permissions": [
     "cookies",
@@ -30,31 +28,22 @@
     "*://*/*",
     "tabs"
   ],
-  "content_scripts": [{
-    "matches": [
-      "http://*/*",
-      "https://*/*",
-      "file://*/*"
-    ],
-    "js": [
-      "app/assets/js/vendor/jquery.min.js"
-    ],
-    "css": [
-      "app/assets/css/inject.css"
-    ]
-  }, {
-    "matches": [
-      "http://*/*",
-      "https://*/*",
-      "file://*/*"
-    ],
-    "js": [
-      "app/assets/js/vendor/jquery.min.js",
-      "app/assets/js/vendor/underscore.min.js",
-      "app/dist/inject.entry.js",
-      "app/assets/js/vendor/clipboard.min.js"
-    ],
-    "run_at": "document_start"
-  }],
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*", "file://*/*"],
+      "js": ["app/assets/js/vendor/jquery.min.js"],
+      "css": ["app/assets/css/inject.css"]
+    },
+    {
+      "matches": ["http://*/*", "https://*/*", "file://*/*"],
+      "js": [
+        "app/assets/js/vendor/jquery.min.js",
+        "app/assets/js/vendor/underscore.min.js",
+        "app/dist/inject.entry.js",
+        "app/assets/js/vendor/clipboard.min.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }

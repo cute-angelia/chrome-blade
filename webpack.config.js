@@ -1,11 +1,12 @@
-var path = require('path')
-var webpack = require('webpack')
+const webpack = require("webpack");
 
 module.exports = {
+  mode: "production",
+  //mode: "development",
   entry: {
-    "inject": __dirname + "/app/inject/inject.js",
-    "background": __dirname + "/app/background/background.js",
-    "option": __dirname + "/app/option/option.js"
+    inject: __dirname + "/app/inject/inject.js",
+    background: __dirname + "/app/background/background.js",
+    option: __dirname + "/app/option/option.js"
   },
   output: {
     path: __dirname + "/app/dist",
@@ -15,48 +16,45 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: "vue-loader"
       },
       {
         test: /\.svg$/,
-        loader: 'svg-inline-loader'
+        loader: "svg-inline-loader"
+      },
+      {
+        test: /\.html$/,
+        loader: "html-loader"
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
+          loader: "babel-loader"
         }
+      },
+      {
+        test: /\.(css)$/,
+        use: [
+          {
+            loader: "style-loader" // creates style nodes from JS strings
+          },
+          {
+            loader: "css-loader" // translates CSS into CommonJS
+          }
+        ]
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|png|svg|gif)(\?.*$|$)/,
+        loader: "url-loader?importLoaders=1&limit=100000"
       }
     ]
   },
   resolve: {
+    extensions: [".js", ".vue"],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      vue$: "vue/dist/vue.esm.js"
     }
   },
-  devServer: {
-    historyApiFallback: true,
-    noInfo: true
-  }
-}
-
-if (process.env.NODE_ENV === 'dev') {
-  module.exports.plugins = (module.exports.plugins || []).concat([
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"dev"'
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin()
-  ])
-}
-
-console.log(process.env.NODE_ENV, '==== env ====')
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports.plugins = (module.exports.plugins || []).concat([
-    new webpack.BannerPlugin("Copyright Rose20.99.c@gmail.com"),
-    new webpack.optimize.UglifyJsPlugin()
-  ])
-}
+  plugins: [new webpack.BannerPlugin("Copyright banther@pm.me")]
+};
