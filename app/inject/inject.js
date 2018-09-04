@@ -61,8 +61,17 @@ var $ = require("jquery");
         }
 
         // https://rarbg.to
-        if (oData.localhost == "rarbg.to") {
+        if (oData.localhost == "rarbggo.org") {
           self.fCleanAdMafia();
+          var myInterval = setInterval(function() {
+            $("div")
+              .last()
+              .css("zIndex", -1);
+            // 清理定时器
+            setTimeout(function() {
+              clearInterval(myInterval);
+            }, 10000);
+          }, 1000);
         }
 
         // 115.com
