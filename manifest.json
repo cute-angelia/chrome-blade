@@ -10,7 +10,10 @@
     "128": "app/assets/img/icons/icon128.png"
   },
   "background": {
-    "scripts": ["app/dist/background.entry.js"],
+    "scripts": [
+      "app/assets/js/vendor/jquery.min.js",
+      "app/dist/background.entry.js"
+    ],
     "persistent": true
   },
   "options_page": "app/option/index.html",

@@ -74,6 +74,33 @@ var $ = require("jquery");
           }, 1000);
         }
 
+        // http://whpp1.com
+        if (oData.localhost == "whpp1.com" || oData.localhost == "whpp2.com") {
+          setInterval(() => {
+            var objs = document.getElementsByClassName("video");
+            for (let i = 0; i < objs.length; i++) {
+              const element = objs[i];
+              let vid = element.dataset.vid;
+
+              var a = document.createElement("a");
+              a.href = "http://whpp2.com/free/detail?vid=" + vid;
+              a.text = "老司机";
+              a.target = "_blank";
+              element.parentNode.appendChild(a);
+            }
+            var objs2 = document.getElementsByClassName("otherlist");
+            for (let i = 0; i < objs2.length; i++) {
+              const element = objs2[i];
+              let vid = element.dataset.vid;
+              var a = document.createElement("a");
+              a.href = "http://whpp1.com/free/detail?vid=" + vid;
+              a.text = "老司机";
+              a.target = "_blank";
+              element.appendChild(a);
+            }
+          }, 8000);
+        }
+
         // 115.com
         if (oData.localhost == "115.com") {
           var limtlz = setInterval(function() {
@@ -384,7 +411,9 @@ var $ = require("jquery");
         // 福利吧
         if (
           oData.localhost == "www.wndflb.com" ||
-          oData.localhost == "www.wnflb.com"
+          oData.localhost == "www.wnflb.com" ||
+          oData.localhost == "www.wnflb19.com" ||
+          oData.localhost == "www.wnflb2019.com"
         ) {
           let myInterval = setInterval(function() {
             fuliba();
