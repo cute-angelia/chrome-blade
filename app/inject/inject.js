@@ -105,7 +105,12 @@ var $ = require("jquery");
         if (oData.localhost == "115.com") {
           var limtlz = setInterval(function() {
             var css = `
+            .main-core {height: 635px;}
+            #js_iframes_box {height: 635px;}
+            #js_center_main_box iframe {height: 635px;}
+            .main-vflow {max-height: 500px; height: 500px;}
             .sub-core {display:none;}
+            .container-main {min-height: 1px;}
             .container-core .main-core{left:35px;}
             `;
             var style = document.createElement("style");
@@ -413,7 +418,8 @@ var $ = require("jquery");
           oData.localhost == "www.wndflb.com" ||
           oData.localhost == "www.wnflb.com" ||
           oData.localhost == "www.wnflb19.com" ||
-          oData.localhost == "www.wnflb2019.com"
+          oData.localhost == "www.wnflb2019.com" ||
+          oData.localhost.indexOf("wnflb") > 0
         ) {
           let myInterval = setInterval(function() {
             fuliba();
