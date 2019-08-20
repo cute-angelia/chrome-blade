@@ -15,7 +15,7 @@ import google from "./site/google";
 
 var $ = require("jquery");
 
-(function() {
+(function () {
   "use strict";
   var ui = {};
   var oData = {
@@ -24,16 +24,16 @@ var $ = require("jquery");
     readurl: "http://" + window.location.host + "/read.php"
   };
   var oPage = {
-    init: function() {
+    init: function () {
       this.view();
       this.listen();
     },
-    view: function() {
+    view: function () {
       //Athletic Maria Pie Dominates Rossy Bush with Strap
       // 初始化数据
       this.functions.fInitInfo();
     },
-    listen: function() {
+    listen: function () {
       var cccc = document || document.documentElement || document.body;
       cccc.oncontextmenu = new Function("event.returnValue=true;");
       cccc.onselectstart = new Function("event.returnValue=true;");
@@ -43,15 +43,15 @@ var $ = require("jquery");
       // }
     },
     functions: {
-      fInitInfo: function() {
+      fInitInfo: function () {
         var self = this;
         console.log(oData.localhost, "Laosiji");
 
         if (oData.localhost == "xmissy.nl") {
-          let myInterval = setInterval(function() {
+          let myInterval = setInterval(function () {
             xmissy();
             // 清理定时器
-            setTimeout(function() {
+            setTimeout(function () {
               clearInterval(myInterval);
             }, 10000);
           }, 1000);
@@ -63,12 +63,95 @@ var $ = require("jquery");
         // https://rarbg.to
         if (oData.localhost == "rarbggo.org") {
           self.fCleanAdMafia();
-          var myInterval = setInterval(function() {
+          var myInterval = setInterval(function () {
             $("div")
               .last()
               .css("zIndex", -1);
             // 清理定时器
-            setTimeout(function() {
+            setTimeout(function () {
+              clearInterval(myInterval);
+            }, 10000);
+          }, 1000);
+        }
+
+        if (oData.localhost.indexOf("themoviedb.org") >= 0) {
+          var myInterval = setInterval(function () {
+            $(".sub_menu").css("left", '110px');
+            // 清理定时器
+            setTimeout(function () {
+              clearInterval(myInterval);
+            }, 10000);
+          }, 1000);
+        }
+
+        // pornhub.com
+        if (oData.localhost.indexOf("pornhub") >= 0) {
+          var piszzz = false;
+          var ad1 = false;
+          var myInterval = setInterval(function () {
+
+            if (!piszzz) {
+              let p = document.getElementById("player");
+              let videoId = p ? 'flashvars_' + p.dataset.videoId : "";
+              console.log(videoId);
+
+              if (videoId.length > 15) {
+                piszzz = true;
+              }
+            }
+
+
+            // ad
+            let ads = document.getElementsByTagName("qblas")
+            for (let index = 0; index < ads.length; index++) {
+              const element = ads[index];
+              element.remove();
+            }
+
+            if (!ad1 && document.getElementById("hd-leftColVideoPage") != null && document.getElementById("hd-leftColVideoPage").nextSibling != null) {
+              let rightad = document.getElementById("hd-leftColVideoPage").nextSibling.nextSibling
+              if (rightad && rightad.id.match(/\d+/)) {
+                rightad.remove();
+                ad1 = true;
+              }
+            }
+
+            // ad2
+            if (document.getElementsByClassName("videos-morepad") && document.getElementsByClassName("videos-morepad").length > 0) {
+              let ad2 = document.getElementsByClassName("videos-morepad")[0].childNodes
+              for (let index = 0; index < ad2.length; index++) {
+                const element = ad2[index];
+                if (element.nodeName != "LI") {
+                  console.log(element.nodeName + " -> remove");
+                  element.remove();
+                }
+              }
+            }
+
+            if (document.getElementById("videoCategory") != null) {
+              let ad3 = document.getElementById("videoCategory").childNodes
+              for (let index = 0; index < ad3.length; index++) {
+                const element = ad3[index];
+                if (element.nodeName != "LI") {
+                  console.log(element.nodeName + " -> remove");
+                  element.remove();
+                }
+              }
+            }
+
+            if (document.getElementById("videoSearchResult") != null) {
+              let ad4 = document.getElementById("videoSearchResult").childNodes
+              for (let index = 0; index < ad4.length; index++) {
+                const element = ad4[index];
+                if (element.nodeName != "LI") {
+                  console.log(element.nodeName + " -> remove");
+                  element.remove();
+                }
+              }
+            }
+
+            // 清理定时器
+            setTimeout(function () {
               clearInterval(myInterval);
             }, 10000);
           }, 1000);
@@ -103,7 +186,7 @@ var $ = require("jquery");
 
         // 115.com
         if (oData.localhost == "115.com") {
-          var limtlz = setInterval(function() {
+          var limtlz = setInterval(function () {
             var css = `
             .main-core {height: 605px;}
             #js_iframes_box {height: 605px;}
@@ -129,7 +212,7 @@ var $ = require("jquery");
         }
 
         if (oData.localhost == "www.google.com") {
-          var limtlz = setInterval(function() {
+          var limtlz = setInterval(function () {
             var css = `
             .mblink:visited, a:visited {color: #ccc;}
             `;
@@ -145,13 +228,13 @@ var $ = require("jquery");
         }
 
         if (oData.localhost == "mrcong.com") {
-          setInterval(function() {
+          setInterval(function () {
             document.getElementById("fukie2").style.display = "";
           }, 1000);
         }
 
         if (oData.localhost == "duckduckgo.com") {
-          setInterval(function() {
+          setInterval(function () {
             $(".results--ads").remove();
           }, 1000);
         }
@@ -172,27 +255,27 @@ var $ = require("jquery");
         }
         //
         if (oData.localhost == "1024zipai.com") {
-          setInterval(function() {
+          setInterval(function () {
             $(".banner").remove();
             $("#haoetv_left").remove();
           }, 100);
         }
 
         if (oData.localhost == "saveurl.kikinote.net") {
-          setInterval(function() {
+          setInterval(function () {
             console.log($(".redirect > a").attr("href"));
             window.location.href = $(".redirect > a").attr("href");
           }, 100);
         }
 
         if (oData.localhost == "www.avny.wang") {
-          setInterval(function() {
+          setInterval(function () {
             $("img").removeClass("img-polaroid");
           }, 100);
         }
 
         if (oData.localhost == "www.tangbure.org") {
-          setTimeout(function() {
+          setTimeout(function () {
             let src = $("#loadingCheck").attr("src");
 
             if (src) {
@@ -213,8 +296,8 @@ var $ = require("jquery");
         }
 
         if (oData.localhost == "www.google.com") {
-          setTimeout(function() {
-            $("a").each(function() {
+          setTimeout(function () {
+            $("a").each(function () {
               var u = $(this).attr("href");
               $(this).attr("target", "_blank");
             });
@@ -222,7 +305,7 @@ var $ = require("jquery");
         }
 
         if (oData.localhost == "500px.com") {
-          setInterval(function() {
+          setInterval(function () {
             var pic = $("img[class=photo]").attr("src");
             $("a[class=photographer_info__user_avatar_region]").attr(
               "href",
@@ -233,35 +316,35 @@ var $ = require("jquery");
         }
 
         if (oData.localhost == "jieduclub.com") {
-          setInterval(function() {
-            var csdn123_obj1 = function() {
+          setInterval(function () {
+            var csdn123_obj1 = function () {
               return false;
             };
           }, 1000);
         }
 
         if (oData.localhost == "55po.com") {
-          setInterval(function() {
+          setInterval(function () {
             $("div[class=textwidget]").remove();
           }, 1000);
           $("div[class=content]").width("1200px");
         }
 
         if (oData.localhost == "javbus.com") {
-          setInterval(function() {
+          setInterval(function () {
             $(".bn728-100").remove();
           }, 1000);
         }
 
         if (oData.localhost == "anti-toto.com") {
-          setInterval(function() {
+          setInterval(function () {
             $(".bn728-100").remove();
           }, 1000);
         }
 
         // thz.la
         if (oData.localhost == "taohuabbs.info") {
-          setInterval(function() {
+          setInterval(function () {
             $("#diynavtop").remove();
           }, 1000);
         }
@@ -271,7 +354,7 @@ var $ = require("jquery");
         }
 
         if (oData.localhost.indexOf("tumblr.com") > 0) {
-          document.onkeydown = function() {
+          document.onkeydown = function () {
             if (event.keyCode == 113) {
               //F2
               window.location.href = "//" + oData.localhost + "/archive";
@@ -281,15 +364,15 @@ var $ = require("jquery");
 
         // twitter.com
         if (oData.localhost == "twitter.com") {
-          setInterval(function() {
+          setInterval(function () {
             $(".GalleryNav--prev").width("15%");
             $("GalleryTweet").style({ bottom: "250px;" });
           }, 1000);
         }
 
         if (oData.localhost == "bt.gg") {
-          setInterval(function() {
-            $(".sendLx").each(function() {
+          setInterval(function () {
+            $(".sendLx").each(function () {
               var href = $(this).attr("href");
               var temp = self.fParseUrl(href);
               if (temp.params.dn == undefined) {
@@ -400,7 +483,7 @@ var $ = require("jquery");
                   A.setAttribute(
                     "href",
                     "magnet:?xt=urn:btih:" +
-                      magnet.replace(/(\s|[\u4e00-\u9fa5])+/g, "")
+                    magnet.replace(/(\s|[\u4e00-\u9fa5])+/g, "")
                   );
                   A.appendChild(document.createTextNode("磁力链接"));
                   //fuel = '<a href="magnet:?xt=urn:btih:' + ( takeMe[j].length >= 40 ? takeMe[j].trim() : takeMe[j] ) + '">磁力链接</a>';
@@ -421,27 +504,27 @@ var $ = require("jquery");
           oData.localhost == "www.wnflb2019.com" ||
           oData.localhost.indexOf("wnflb") > 0
         ) {
-          let myInterval = setInterval(function() {
+          let myInterval = setInterval(function () {
             fuliba();
             // 清理定时器
-            setTimeout(function() {
+            setTimeout(function () {
               clearInterval(myInterval);
             }, 10000);
           }, 1000);
         }
       },
-      fCleanAdSkandal: function() {
-        setInterval(function() {
+      fCleanAdSkandal: function () {
+        setInterval(function () {
           $("#btm_banner").remove();
           $("[title$='Online']").remove();
         }, 1000);
       },
       // 磁力title
-      fCleanAdMafia: function() {
+      fCleanAdMafia: function () {
         $("[href^='magnet']").html("磁力链接");
       },
       // 磁力下载
-      fAddBox: function() {
+      fAddBox: function () {
         var oD_box = document.createElement("div");
         oD_box.style.zindex = "999999";
         oD_box.id = "oD_box";
@@ -456,7 +539,7 @@ var $ = require("jquery");
         oD_button.type = "button";
         oD_button.textContent = "转换";
         oD_button.style = "padding:4px 0;  position: relative;  top:-1px";
-        oD_button.onclick = function() {
+        oD_button.onclick = function () {
           var oD_hash = oD_text.value.replace(/(\[.*\])|[\W_]/g, "");
           if (oD_hash === "") {
             alert("请先输入hash!");
@@ -489,7 +572,7 @@ var $ = require("jquery");
         oD_box.appendChild(oD_link2);
         document.body.appendChild(oD_box);
       },
-      fParseUrl: function(url) {
+      fParseUrl: function (url) {
         var a = document.createElement("a");
         a.href = url;
         return {
@@ -498,7 +581,7 @@ var $ = require("jquery");
           host: a.hostname,
           port: a.port,
           query: a.search,
-          params: (function() {
+          params: (function () {
             var ret = {},
               seg = a.search.replace(/^\?/, "").split("&"),
               len = seg.length,
