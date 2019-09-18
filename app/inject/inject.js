@@ -234,9 +234,6 @@ var $ = require("jquery");
         }
 
         if (oData.localhost == "duckduckgo.com") {
-          setInterval(function () {
-            $(".results--ads").remove();
-          }, 1000);
         }
 
         // https://btkitty.pw

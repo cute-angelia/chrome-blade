@@ -5,20 +5,20 @@
   "description": "低调,低调,低调",
   "homepage_url": "http://lsj.aacc.in/",
   "icons": {
-    "16": "app/assets/img/icons/icon16.png",
-    "48": "app/assets/img/icons/icon48.png",
-    "128": "app/assets/img/icons/icon128.png"
+    "16": "assets/img/icons/icon16.png",
+    "48": "assets/img/icons/icon48.png",
+    "128": "assets/img/icons/icon128.png"
   },
   "background": {
     "scripts": [
-      "app/assets/js/vendor/jquery.min.js",
-      "app/dist/background.entry.js"
+      "assets/js/vendor/jquery.min.js",
+      "dist/background.entry.js"
     ],
     "persistent": true
   },
-  "options_page": "app/option/index.html",
+  "options_page": "option/index.html",
   "browser_action": {
-    "default_icon": "app/assets/img/icons/icon512.png",
+    "default_icon": "assets/img/icons/icon512.png",
     "default_title": "秋名山老司机的剃须刀"
   },
   "permissions": [
@@ -31,19 +31,18 @@
     "*://*/*",
     "tabs"
   ],
-  "content_scripts": [
-    {
+  "content_scripts": [{
       "matches": ["http://*/*", "https://*/*", "file://*/*"],
-      "js": ["app/assets/js/vendor/jquery.min.js"],
-      "css": ["app/assets/css/inject.css"]
+      "js": ["assets/js/vendor/jquery.min.js"],
+      "css": ["assets/css/inject.css"]
     },
     {
       "matches": ["http://*/*", "https://*/*", "file://*/*"],
       "js": [
-        "app/assets/js/vendor/jquery.min.js",
-        "app/assets/js/vendor/underscore.min.js",
-        "app/dist/inject.entry.js",
-        "app/assets/js/vendor/clipboard.min.js"
+        "assets/js/vendor/jquery.min.js",
+        "assets/js/vendor/underscore.min.js",
+        "dist/inject.entry.js",
+        "assets/js/vendor/clipboard.min.js"
       ],
       "run_at": "document_start"
     }
