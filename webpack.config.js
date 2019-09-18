@@ -1,5 +1,9 @@
 const webpack = require("webpack");
 
+const CopyPlugin = require("copy-webpack-plugin");
+const AppPath = __dirname + "/app/";
+const DistPath = __dirname + "/build/";
+
 module.exports = {
   mode: "production",
   //mode: "development",
@@ -56,5 +60,28 @@ module.exports = {
       vue$: "vue/dist/vue.esm.js"
     }
   },
-  plugins: [new webpack.BannerPlugin("Copyright banther@pm.me")]
+  plugins: [
+    new webpack.BannerPlugin("Copyright banther@pm.me"),
+    new CopyPlugin([{ from: AppPath + "manifest.json", to: DistPath }]),
+    new CopyPlugin([
+      {
+        from: AppPath + "dist/*.entry.js",
+        to: DistPath + "dist/",
+        flatten: true
+      }
+    ]),
+    new CopyPlugin([
+      {
+        from: AppPath + "assets",
+        to: DistPath + "assets"
+      }
+    ]),
+    new CopyPlugin([
+      {
+        from: AppPath + "option/index.html",
+        to: DistPath + "option/index.html"
+      }
+    ]),
+
+  ]
 };
